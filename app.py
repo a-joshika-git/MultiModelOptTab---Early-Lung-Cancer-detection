@@ -106,10 +106,6 @@ def build_ui() -> gr.Blocks:
 
     with gr.Blocks(
         title="MultiModalOptTab — Lung Cancer Risk",
-        theme=gr.themes.Soft(primary_hue="blue"),
-        css="""
-        .disclaimer { font-size: 0.85em; color: #666; margin-top: 12px; }
-        """,
     ) as demo:
         gr.Markdown(
             """
@@ -191,7 +187,11 @@ if __name__ == "__main__":
     demo = build_ui()
     share = os.environ.get("GRADIO_SHARE", "false").lower() == "true"
     demo.launch(
+        theme=gr.themes.Soft(primary_hue="blue"),
+        css="""
+        .disclaimer { font-size: 0.85em; color: #666; margin-top: 12px; }
+        """,
         server_name="0.0.0.0",
         server_port=int(os.environ.get("PORT", "7860")),
-        share=share,
+        share=True,
     )
